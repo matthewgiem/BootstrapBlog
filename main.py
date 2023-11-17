@@ -16,14 +16,14 @@ def about():
     header_title = "About"
     return render_template("about.html", title=header_title)
 
-@app.route('/post/<int:blog_id>')
-def show_post(blog_id):
-    post=None
-    for blog in posts:
-        if blog["id"] == blog_id:
-            post = blog
+@app.route('/post/<int:index>')
+def show_post(index):
+    requested_post = None
+    for blog_post in posts:
+        if blog_post["id"] == index:
+            requested_post = blog_post
     header_title = "Post"
-    return render_template("post.html", title=header_title, post=post)
+    return render_template("post.html", title=header_title, post=requested_post)
 
 @app.route('/contact')
 def contact():
