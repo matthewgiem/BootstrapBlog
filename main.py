@@ -30,17 +30,12 @@ def contact():
     header_title = "Contact"
     return render_template("contact.html", title=header_title)
 
-app.route('/recieve_data', methods=["POST", "GET"])
+@app.route('/recieve_data', methods=["POST", "GET"])
 def recieve_data():
+    header_title = "Home"
     data = request.form
     print(data["name"], data["email"], data["phone"], data["message"])
-    return render_template("index.html", title="Home")
-
-@app.route('/fix', methods=["POST", "GET"])
-def fix():
-    data = request.form
-    print(data["name"], data["email"], data["phone"], data["message"])
-    return render_template("index.html", title="Home")
+    return render_template("index.html", title=header_title, all_posts=posts)
 
 
 if __name__ == "__main__":
