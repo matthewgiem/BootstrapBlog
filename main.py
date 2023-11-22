@@ -27,13 +27,12 @@ def show_post(index):
 
 @app.route('/contact', methods=["POST", "GET"])
 def contact():
+    header_title = "Contact"
     if request.method == "POST":
-        header_title = "Home"
         data = request.form
         print(data["name"], data["email"], data["phone"], data["message"])
-        return render_template("index.html", title=header_title, all_posts=posts)
-    header_title = "Contact"
-    return render_template("contact.html", title=header_title)
+        return render_template("contact.html", title=header_title, msg_sent=True)
+    return render_template("contact.html", title=header_title, msg_sent=False)
 
 
 if __name__ == "__main__":
