@@ -25,17 +25,15 @@ def show_post(index):
     header_title = "Post"
     return render_template("post.html", title=header_title, post=requested_post)
 
-@app.route('/contact')
+@app.route('/contact', methods=["POST", "GET"])
 def contact():
+    if request.method == "POST":
+        header_title = "Home"
+        data = request.form
+        print(data["name"], data["email"], data["phone"], data["message"])
+        return render_template("index.html", title=header_title, all_posts=posts)
     header_title = "Contact"
     return render_template("contact.html", title=header_title)
-
-@app.route('/recieve_data', methods=["POST", "GET"])
-def recieve_data():
-    header_title = "Home"
-    data = request.form
-    print(data["name"], data["email"], data["phone"], data["message"])
-    return render_template("index.html", title=header_title, all_posts=posts)
 
 
 if __name__ == "__main__":
